@@ -154,11 +154,15 @@ section.block{padding-block:clamp(72px,10vw,120px) 0}
 .c-pdfs{grid-column:1;grid-row:3}
 .c-saucy{grid-column:2;grid-row:3}
 .c-catas{grid-column:3/span 2;grid-row:3}
+.c-sentencia{grid-column:1/-1;grid-row:4;min-height:220px}
+.c-sentencia .viz{gap:28px;flex-wrap:wrap}
+.c-sentencia .viz .bigk{font-size:clamp(44px,5vw,68px)}
+.c-sentencia .viz small{display:block;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:6px;letter-spacing:.08em;text-transform:uppercase}
 @media (max-width:1020px){
   .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
   .bento .card{grid-column:auto;grid-row:auto}
   .c-gendita{grid-column:1/-1!important}
-  .c-teso,.c-catas{grid-column:1/-1!important}
+  .c-teso,.c-catas,.c-sentencia{grid-column:1/-1!important}
 }
 @media (max-width:600px){
   .bento{grid-template-columns:1fr}
@@ -437,7 +441,7 @@ footer a{color:var(--soft)}
 <div class="wrap">
   <div class="nums" aria-label="Algunos números">
     <div class="num"><b data-count="4" data-suffix="+">4+</b><span>años en tesorería regional</span></div>
-    <div class="num"><b data-count="7">7</b><span>proyectos propios y de clientes</span></div>
+    <div class="num"><b data-count="8">8</b><span>proyectos propios y de clientes</span></div>
     <div class="num"><b data-count="145">145</b><span>tests automatizados en Gendita</span></div>
     <div class="num"><b data-count="346">346</b><span>feriados de 26 países en un dataset</span></div>
     <div class="num"><b data-count="47">47</b><span>anuncios auditados en Meta Ads</span></div>
@@ -518,6 +522,16 @@ footer a{color:var(--soft)}
         <div class="ch"><span class="area">Marketing · Operación</span><span class="status live">En curso</span></div>
         <div class="viz"><span class="bigk" aria-hidden="true">47</span><p style="margin-left:14px">anuncios comparados por costo por lead. Ganó Instagram Stories.</p></div>
         <div class="cb"><h3>Catas No Tradicionales</h3><p>Auditoría de anuncios, posicionamiento B2B y un sistema de gestión para un negocio gastronómico familiar.</p><span class="open">Ver caso →</span></div>
+      </button>
+
+      <button class="card c-sentencia" data-case="sentencia" type="button">
+        <div class="ch"><span class="area">Web · Sistema de reservas</span><span class="status wip">En desarrollo</span></div>
+        <div class="viz" aria-hidden="true">
+          <div><span class="bigk">70</span><small>lugares por partida</small></div>
+          <div><span class="bigk">30+</span><small>migraciones en producción</small></div>
+          <div><span class="bigk">3</span><small>roles: jugador, staff, dueño</small></div>
+        </div>
+        <div class="cb"><h3>La Sentencia</h3><p>Sitio y sistema de reservas con cupo para un campo de airsoft CQB en Boedo. Cliente real, desarrollado entre dos.</p><span class="open">Ver caso →</span></div>
       </button>
     </div>
   </section>
@@ -701,6 +715,31 @@ footer a{color:var(--soft)}
   </ul>
   <h4>Herramientas</h4>
   <div class="stack"><span>Meta Ads</span><span>Excel</span><span>Documentación de procesos</span></div>
+</template>
+
+<template id="t-sentencia">
+  <span class="eyebrow">Web · Sistema de reservas</span>
+  <h3 id="case-title">La Sentencia</h3>
+  <p class="kicker">Sitio oficial y sistema de reservas de un campo de airsoft CQB en Boedo, Buenos Aires. Lo desarrollo junto a un socio, para un cliente real.</p>
+  <dl><dt>Rol</dt><dd>Desarrollo, base de datos y producto (en equipo de dos)</dd><dt>Estado</dt><dd>En desarrollo, en producción con acceso restringido hasta habilitar el cobro online</dd></dl>
+  <h4>El problema</h4>
+  <p>Las partidas se organizaban por WhatsApp: cupos anotados a mano, sin saber cuánta gente había confirmado ni qué se había pagado.</p>
+  <h4>Qué construí</h4>
+  <ul>
+    <li><b>No es un sistema de turnos, es un sistema de eventos con cupo.</b> El staff crea la partida y el jugador se anota en una que ya existe, hasta 70 lugares. Lo que entra por WhatsApp lo carga el staff y el sistema genera el mensaje del grupo ya numerado.</li>
+    <li>Cartelera de partidas, carrito de reserva con alquiler de equipo, seña o pago total, y un flujo guiado para cumpleaños.</li>
+    <li>Cuentas de jugador con perfil y una carta personal exportable como imagen o PDF para imprimir.</li>
+    <li>Panel de staff con caja, pedidos, pagos anulables e historial de auditoría, y un panel de finanzas visible solo para el dueño.</li>
+  </ul>
+  <h4>Decisiones que sostienen el producto</h4>
+  <ul>
+    <li><b>El cupo lo controla la base de datos, no la pantalla.</b> Los permisos por fila (RLS) y las funciones de reserva evitan que se pase del límite aunque dos personas se anoten a la vez.</li>
+    <li><b>Cada migración que toca políticas se prueba también por la API,</b> no solo con SQL. Una migración rompió la lista de anotados y de ahí salió esa regla.</li>
+    <li><b>Salida a producción con acceso restringido.</b> Cuando gente de afuera empezó a reservar partidas reales, cerré el sitio con una clave hasta tener listo el cobro online y los textos legales.</li>
+    <li><b>La foto del jugador es privada:</b> bucket cerrado, solo la ve su dueño, con recorte y compresión en el navegador.</li>
+  </ul>
+  <h4>Stack</h4>
+  <div class="stack"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Tailwind 4</span><span>Supabase · PostgreSQL · Auth · RLS</span><span>Cloudflare Workers</span><span>Resend</span><span>Vitest</span></div>
 </template>
 
 <script>

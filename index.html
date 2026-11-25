@@ -525,7 +525,7 @@ footer a{color:var(--soft)}
       </button>
 
       <button class="card c-sentencia" data-case="sentencia" type="button">
-        <div class="ch"><span class="area">Web · Sistema de reservas</span><span class="status wip">En desarrollo</span></div>
+        <div class="ch"><span class="area">Web · Sistema de reservas</span><span class="status done">Entregado</span></div>
         <div class="viz" aria-hidden="true">
           <div><span class="bigk">70</span><small>lugares por partida</small></div>
           <div><span class="bigk">30+</span><small>migraciones en producción</small></div>
@@ -721,7 +721,7 @@ footer a{color:var(--soft)}
   <span class="eyebrow">Web · Sistema de reservas</span>
   <h3 id="case-title">La Sentencia</h3>
   <p class="kicker">Sitio oficial y sistema de reservas de un campo de airsoft CQB en Boedo, Buenos Aires. Lo desarrollo junto a un socio, para un cliente real.</p>
-  <dl><dt>Rol</dt><dd>Desarrollo, base de datos y producto (en equipo de dos)</dd><dt>Estado</dt><dd>En desarrollo, en producción con acceso restringido hasta habilitar el cobro online</dd></dl>
+  <dl><dt>Rol</dt><dd>Desarrollo, base de datos y producto (en equipo de dos)</dd><dt>Estado</dt><dd>Entregado al cliente y en producción</dd></dl>
   <h4>El problema</h4>
   <p>Las partidas se organizaban por WhatsApp: cupos anotados a mano, sin saber cuánta gente había confirmado ni qué se había pagado.</p>
   <h4>Qué construí</h4>
@@ -735,7 +735,7 @@ footer a{color:var(--soft)}
   <ul>
     <li><b>El cupo lo controla la base de datos, no la pantalla.</b> Los permisos por fila (RLS) y las funciones de reserva evitan que se pase del límite aunque dos personas se anoten a la vez.</li>
     <li><b>Cada migración que toca políticas se prueba también por la API,</b> no solo con SQL. Una migración rompió la lista de anotados y de ahí salió esa regla.</li>
-    <li><b>Salida a producción con acceso restringido.</b> Cuando gente de afuera empezó a reservar partidas reales, cerré el sitio con una clave hasta tener listo el cobro online y los textos legales.</li>
+    <li><b>Salida a producción controlada.</b> Cuando gente de afuera empezó a reservar partidas reales antes de tiempo, cerré el sitio con una clave hasta dejarlo listo para el lanzamiento.</li>
     <li><b>La foto del jugador es privada:</b> bucket cerrado, solo la ve su dueño, con recorte y compresión en el navegador.</li>
   </ul>
   <h4>Stack</h4>
